@@ -41,6 +41,20 @@ app.get('/movie/:movieID', async function(req, res) {
   res.send(data);
 });
 
+app.patch('/movie/:movieID', async function(req, res) {
+  const movieID = req.params.movieID;
+  const {
+    data,
+  } = await axios.put(
+    `https://www.jsonstore.io/c05c7552918a9b7f6f8bf7c5e7e46b029bd3cc19d6cf857cde152f84f9379687/${movieID}/${req.body.key}`,
+    `"${req.body.value}"`,
+    { headers: { 'content-type': 'application/json' } }
+  );
+  res.send(data);
+});
+
+
+
 app.delete('/movie/:movieID', async function(req, res) {
   const movieID = req.params.movieID;
   const {
